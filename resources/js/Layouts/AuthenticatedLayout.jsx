@@ -1,18 +1,11 @@
-import { useState } from "react";
-import ApplicationLogo from "@/Components/ApplicationLogo";
-import Dropdown from "@/Components/Dropdown";
-import NavLink from "@/Components/NavLink";
-import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
+import React from "react";
+import NavMenu from "@/Components/NavMenu";
 import { Link } from "@inertiajs/react";
-import NavigationMenu from "@/Components/NavigationMenu";
 
 export default function Authenticated({ user, header, children }) {
-    const [showingNavigationDropdown, setShowingNavigationDropdown] =
-        useState(false);
-
     return (
-        <div className="min-h-screen bg-gray-100">
-            <NavigationMenu />
+        <div className="min-h-screen bg-gray-100 flex flex-col">
+            <NavMenu user={user} />
 
             {header && (
                 <header className="bg-white shadow">
@@ -22,7 +15,16 @@ export default function Authenticated({ user, header, children }) {
                 </header>
             )}
 
-            <main>{children}</main>
+            <main className="flex-grow">{children}</main>
+
+            <footer className="bg-white shadow py-4 mt-auto">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center text-sm text-gray-500">
+                        Mini-CRM para Pequeñas Organizaciones &copy;{" "}
+                        {new Date().getFullYear()}
+                    </div>
+                </div>
+            </footer>
         </div>
     );
 }
